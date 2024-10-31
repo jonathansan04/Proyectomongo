@@ -28,10 +28,13 @@ function Registrarpagina(){
 
 
     return(
-        <div className="bg-slate-400 max-w-md p-10 rounded-md items-center justify-center">
-            {
+        
+        <div className="flex items-center justify-center min-h-screen bg-gray-100">
+            <div className="bg-slate-400 max-w-md w-full p-10 rounded-md shadow-lg">
+            <h1 className="text-2xl font-bold"> Registro</h1>
+        {
                 RegistroErrors.map((error,i)=>(
-                    <div className="bg-red-500 p-2 text-white" key={i}>
+                    <div className="bg-red-500 p-2 text-white mb-2" key={i}>
                         {error}
                         </div>
                 ))
@@ -50,19 +53,20 @@ function Registrarpagina(){
           )}
 
                 <input type="password"  {...register('password', {required: true})} 
-                                className="w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2" placeholder="contraseña"/>
+                               className="w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2" placeholder="contraseña"/>
                                   {errors.password?.message && (
             <p className="text-red-500">{errors.password?.message}</p>
           )}
 
-                <button type="submit">
+                <button type="submit" className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition duration-300">
                     Registrar
                 </button>
             </form>
 
             <p className="flex gap-x-2 justify-between">
-      Ya tienes una cuenta <Link to="/login" className="text-sky-700">Iniciar sesion</Link>
+      Ya tienes una cuenta <Link to="/login" className="text-sky-700 hover:underline">Iniciar sesion</Link>
             </p>
+        </div>
         </div>
     )
 }

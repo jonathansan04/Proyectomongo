@@ -37,8 +37,9 @@ function Loginpagina(){
 
 
     return(
-        <div className="flex h-[calc(100vh-100px)] items-center justify-center">
-        <div className="bg-zinc-700 text-white px-4 py-2 rounded-md my-2">
+        <div className="flex items-center justify-center min-h-screen bg-gray-100">
+            <div className="bg-slate-400 max-w-md w-full p-10 rounded-md shadow-lg">
+            <h1 className="text-2xl font-bold"> Inicio de sesión</h1>
                 {
                 iniciarErrors.map((error,i)=>(
                     <div className="bg-red-500 p-2 text-white text-center" key={i}>
@@ -46,7 +47,7 @@ function Loginpagina(){
                         </div>
                 ))
             }
-    <h1 className="text-2xl font-bold"> Login</h1>
+   
     <form onSubmit={onSubmit}>
 
     <input type="email" {...register('email', {required: true})} 
@@ -61,12 +62,12 @@ function Loginpagina(){
                 <p className="text-red-500">{errors.password?.message}</p>
                 )}
 
-<button type="submit">
+<button type="submit" className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition duration-300">
     Iniciar sesion 
 </button>
 </form >
 <p className="flex gap-x-2 justify-between">
-    No tienes una cuenta <Link to="/registrar" className="text-sky-500">Registrarme</Link>
+    No tienes una cuenta <Link to="/registrar" className="text-sky-700 hover:underline">Registrarme</Link>
 </p>
 </div>
         </div>
