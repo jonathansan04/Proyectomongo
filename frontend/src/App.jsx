@@ -7,6 +7,7 @@ import HomePage from "./pages/HomePage.jsx";
 import PerfilPage from "./pages/PerfilPage.jsx";
 import ProtectRoute from "./pages/ProtectRoute.jsx";
 import InicioPage from "./pages/InicioPage.jsx";
+import AdminPage from "./pages/AdminPage.jsx";
 
 
 function App(){
@@ -21,7 +22,8 @@ function App(){
       
       <Route element={<ProtectRoute/>}>
       <Route path="/inicio" element={<InicioPage/>}/>
-      <Route path="/perfil" element={<PerfilPage/> }/>      
+      <Route path="/perfil" element={<PerfilPage/> }/> 
+      <Route path="/admin" element={<AdminPage/> }/>     
       </Route>
       </Routes>
     </BrowserRouter>

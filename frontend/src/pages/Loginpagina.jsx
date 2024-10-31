@@ -2,8 +2,8 @@ import { useForm } from "react-hook-form"
 import { useAuth } from "../context/authContext.jsx";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-
-
+//import jwt from 'jwt-decode';
+import { jwtDecode } from "jwt-decode";
 function Loginpagina(){
 
     const {register, 
@@ -11,16 +11,26 @@ function Loginpagina(){
         formState: {errors},
         } = useForm();
 
-    const {iniciar, errors: iniciarErrors, isAuthenticated} = useAuth();
+    const {iniciar, errors: iniciarErrors, isAuthenticated, token} = useAuth();
         const navigate = useNavigate();
     const onSubmit = handleSubmit((data)=>{
         iniciar(data);
     });
 
     useEffect (()=>{
-        if (isAuthenticated) navigate("/inicio")
-    },[isAuthenticated])
-
+      /*  if (isAuthenticated) navigate("/inicio")
+    },[isAuthenticated])*/
+      if (isAuthenticated && token) {
+        console.log(token)
+        const decodedToken = jwtDecode(token); // Decodificamos el token
+        console.log(decodedToken)
+        if (decodedToken.role === 'admin') {
+            navigate('/admin'); // Redirigir a la página específica
+        } else {
+            navigate('/inicio'); // Redirigir a la página de usuarios
+        }
+    }
+}, [isAuthenticated, token, navigate]);
      
 
      

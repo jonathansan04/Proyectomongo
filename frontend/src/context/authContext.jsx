@@ -17,6 +17,8 @@ export const AuthProvider = ({children}) =>{
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [errors, setErrors] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [token, setToken] = useState(null);
+    const [isRegister, setIsRegister] = useState(false);
 
 
     const signup = async (user) =>{
@@ -24,7 +26,7 @@ export const AuthProvider = ({children}) =>{
         const res =  await registroRequest(user);
         console.log(res.data);
         setUser(res.data);
-       // setIsAuthenticated(true);
+        setIsRegister(true);
       } catch(error){
         setErrors(error.response.data)
         console.log(error.response.data);
@@ -35,7 +37,10 @@ export const AuthProvider = ({children}) =>{
     const iniciar = async (user) => {
       try {
        const res =  await loginRequest(user)
+       const ntoken  = res.data.token;
        console.log(res)
+       console.log(ntoken)
+       setToken(ntoken);
        setUser(res.data);
        setIsAuthenticated(true);
       
@@ -44,6 +49,7 @@ export const AuthProvider = ({children}) =>{
           return setErrors(error.response.data)
         }
         setErrors([error.response.data.message])
+        //console.error("Error en el inicio de sesión:", error);
       }
     }
 
@@ -105,7 +111,9 @@ export const AuthProvider = ({children}) =>{
             user,
             signup,
             iniciar,
+            token,
             salir,
+            isRegister,
             isAuthenticated,
             errors,
             loading

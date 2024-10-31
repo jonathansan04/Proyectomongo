@@ -11,19 +11,19 @@ function Registrarpagina(){
          formState:{ errors},
        } = useForm();
 
-    const {signup, errors: RegistroErrors} = useAuth();
+    const {signup, errors: RegistroErrors, isRegister} = useAuth();
     const navigate = useNavigate();
 
-    /*useEffect(()=>{
-        if (isAuthenticated) navigate("/login")
-    }, [isAuthenticated])*/
+    useEffect(()=>{
+        if (isRegister) navigate("/login")
+    }, [isRegister])
 
-
+    
 
 
     const onSubmit = handleSubmit(async (values)=>{
               signup(values);
-              navigate('/login');
+             // navigate('/login');
     });
 
 

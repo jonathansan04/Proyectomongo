@@ -56,16 +56,19 @@ export const iniciar = async (req,res) =>{
 
        if (!correcto) return res.status(400).json({message: "Contraseña incorrecta"});
         
-       const token = await createAccessToken({id:userFound._id});
+       const token = await createAccessToken({id:userFound._id,  role: userFound.email === 'admin@gmail.com' ? 'admin' : 'user' });
      
         res.cookie("token",token);
         //Parametros enviados en el Json
         res.json({
+            token: token,
             id: userFound._id,
             usuario: userFound.usuario,
             email: userFound.email,
             createdAt: userFound.createdAt,
             updateAt: userFound.updatedAt
+
+
         })
        // console.log(email,password,usuario);
         //res.send("Registrado");
